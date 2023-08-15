@@ -1,0 +1,6 @@
+{
+	"window.autoDetectColorScheme": true,
+	"workbench.preferredDarkColorTheme": "Visual Studio Dark - C++",
+	"workbench.colorTheme": "Visual Studio Dark - C++",
+	"workbench.preferredLightColorTheme": "Visual Studio Light - C++"
+}

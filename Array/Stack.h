@@ -1,3 +1,5 @@
+
+
 template <typename T = int>
 class Stack {
 	private:

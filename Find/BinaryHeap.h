@@ -1,7 +1,5 @@
 
 
-#include <iostream>
-
 #include <memory>
 #include <optional>
 #include <tuple>
@@ -11,12 +9,8 @@ using std::shared_ptr;
 using std::optional;
 using std::stack;
 
-using std::cout;
-using std::endl;
-using std::cin;
-
 template <typename Key, typename Val>
-class BST {
+class BinaryHeap {
 	private:
 	class Node {
 		public:
@@ -42,7 +36,7 @@ class BST {
 			return node->num;
 		}
 	}
-
+	
 	optional<Val> get (Key key, shared_ptr<Node> node) {
 		if (node == nullptr) {
 			return {};

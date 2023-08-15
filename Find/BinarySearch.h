@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-namespace ForBinarySearchST {
+namespace ForBinarySearch {
 	template <typename Key, typename Val>
 	struct Pair {
 		Key key;
@@ -13,10 +13,10 @@ namespace ForBinarySearchST {
 	};
 };
 
-using namespace ForBinarySearchST;
+using namespace ForBinarySearch;
 
 template <typename Key, typename Val>
-class BinarySearchST {
+class BinarySearch {
 	private:
 
 	Pair<Key, Val>* ptr = new Pair<Key, Val>[16];
@@ -58,8 +58,8 @@ class BinarySearchST {
 
 	public:
 
-	BinarySearchST () = default;
-	~BinarySearchST () {
+	BinarySearch () = default;
+	~BinarySearch () {
 		delete [] ptr;
 	}
 
