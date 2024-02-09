@@ -8,7 +8,7 @@ using std::vector;
 template<typename NumT, typename ResT, int MaxLog, ResT (*Fun1) (NumT one), ResT (*Fun2) (ResT one, ResT two)>
 class SparseTable {
 	private:
-	vector<vector<int>> res;
+	vector<vector<ResR>> res;
 
 	public:
 
