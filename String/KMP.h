@@ -6,21 +6,19 @@
 using std::string;
 using std::vector;
 
-template <typename ResT>
 class KMP {
 	private:
 	string pat;
-	vector<ResT> pi;
+	vector<int> pi;
 
 	public:
 	KMP () = default;
 	KMP (string pat);
-	vector<ResT> getPi () {return pi;}
-	vector<ResT> kmp (string txt);
+	vector<int> getPi () {return pi;}
+	vector<int> kmp (string txt);
 };
 
-template <typename ResT>
-KMP<ResT>::KMP (string pat) : pat (pat) {
+KMP::KMP (string pat) : pat (pat) {
 	pi.resize(pat.size());
 	for (int i = 1, j = 0; i < pat.size(); i++) {
 		while (j && pat[i] != pat[j]) {
@@ -33,9 +31,8 @@ KMP<ResT>::KMP (string pat) : pat (pat) {
 	}
 }
 
-template <typename ResT>
-vector<ResT> KMP<ResT>::kmp (string txt) {
-	vector<ResT> res;
+vector<int> KMP::kmp (string txt) {
+	vector<int> res;
 	for (int i = 0, j = 0; i < txt.size(); i++) {
 		while (j && txt[i] != pat[j]) {
 			j = pi[j - 1];

@@ -8,7 +8,6 @@ using std::min;
 using std::string;
 using std::vector;
 
-template<typename ResT>
 class Manacher {
 	private:
 	string str;
@@ -17,11 +16,11 @@ class Manacher {
 
 	Manacher (string str) : str (str) {}
 	void sthForStr (char put = '#');
-	vector<ResT> manacher ();
+	vector<int> manacher ();
 };
 
-template<typename ResT>
-void Manacher<ResT>::sthForStr (char put) {
+
+void Manacher::sthForStr (char put) {
 	string res = "";
 	for (char ch : str) {
 		res += put;
@@ -31,10 +30,9 @@ void Manacher<ResT>::sthForStr (char put) {
 	str = res;
 }
 
-template<typename ResT>
-vector<ResT> Manacher<ResT>::manacher () {
+vector<int> Manacher::manacher () {
 	int l = 0, r = -1;
-	vector<ResT> res;
+	vector<int> res;
 	
 	for (int i = 0; i < str.size(); i++) {
 		int k = ((i > r) ? 1 : min (res[l + r - i], r - i + 1));

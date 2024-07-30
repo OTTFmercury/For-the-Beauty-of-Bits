@@ -18,7 +18,7 @@ class GraphWithVector {
 	PointT getN () {return n;}
 	void add (PointT u, PointT v, EdgeT w = 1);
 	void addBoth (PointT u, PointT v, EdgeT w = 1);
-	const auto operator [] (const PointT i) const {
+	auto& operator [] (const PointT i) {
 		return graph[i];
 	}
 };

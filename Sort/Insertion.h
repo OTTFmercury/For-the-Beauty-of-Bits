@@ -20,11 +20,4 @@ class Insertion {
 			}
 		}
 	}
-
-	void print () {
-		for (auto i : vec) {
-			std::cout << i << ' ';
-		}
-		std::cout << std::endl;
-	}
 };

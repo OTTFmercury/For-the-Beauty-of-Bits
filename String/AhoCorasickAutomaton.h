@@ -12,11 +12,10 @@ using std::queue;
 using std::string;
 using std::vector;
 
-template <typename ResT>
 class AhoCorasickAutomaton {
 	private:
 	vector<array<int, 30>> tree;
-	vector<ResT> stop;
+	vector<int> stop;
 	vector<int> which;
 	vector<int> fail;
 	int cc = 0;
@@ -25,19 +24,17 @@ class AhoCorasickAutomaton {
 	AhoCorasickAutomaton ();
 	void insert (string str);
 	void acInit ();
-	vector<ResT> ac (string str);
+	vector<int> ac (string str);
 };
 
-template <typename ResT>
-AhoCorasickAutomaton<ResT>::AhoCorasickAutomaton () {
+AhoCorasickAutomaton::AhoCorasickAutomaton () {
 	tree.resize(1);
 	stop.resize(1);
 	which.resize(1);
 	fail.resize(1);
 }
 
-template <typename ResT>
-void AhoCorasickAutomaton<ResT>::insert (string str) {
+void AhoCorasickAutomaton::insert (string str) {
 	int num = 0;
 	for (char ch : str) {
 		if (!tree[num][(int) ch - 'a']) {
@@ -53,8 +50,7 @@ void AhoCorasickAutomaton<ResT>::insert (string str) {
 	which[num] = ++cc;
 }
 
-template <typename ResT>
-void AhoCorasickAutomaton<ResT>::acInit () {
+void AhoCorasickAutomaton::acInit () {
 	queue<int> q;
 	for (int i = 0; i < 26; i++) {
 		if (tree[0][i]) {
@@ -77,9 +73,8 @@ void AhoCorasickAutomaton<ResT>::acInit () {
 	}
 }
 
-template <typename ResT>
-vector<ResT> AhoCorasickAutomaton<ResT>::ac (string str) {
-	vector<ResT> res;
+vector<int> AhoCorasickAutomaton::ac (string str) {
+	vector<int> res;
 	res.resize(cc + 1);
 
 	for (int i = 0, j = 0; i < str.size(); i++) {
