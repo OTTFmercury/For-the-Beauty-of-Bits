@@ -73,7 +73,7 @@ SegmentTree<ResT, FunCal>::SegmentTree (vector<ResT> nums) : nums (nums), n (num
 	mark.resize(n * 4);
 
 	build (1, n, 1);
-}	
+}
 
 template <typename ResT, ResT (*FunCal) (ResT one, ResT two)>
 void SegmentTree<ResT, FunCal>::update (long long allL, long long allR, long long nowL, long long nowR, long long now, ResT num) {
