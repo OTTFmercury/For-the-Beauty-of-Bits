@@ -1,10 +1,8 @@
 
 #include <algorithm>
-#include <cstring>
 #include <queue>
 
 using std::fill;
-using std::memset;
 using std::min;
 using std::queue;
 
@@ -12,26 +10,29 @@ template <typename PointT, typename EdgeT, typename GraphT>
 class Dinic {
 	private:
 
-	GraphT graph;
 	PointT B;
 	PointT E;
-	PointT dep[211];
-	PointT cur[211];
+	vector<int> dep;
+	vector<int> cur;
 	EdgeT res;
 
 	bool bfs ();
 	EdgeT dfs (PointT now, EdgeT limit);
 
 	public:
+	GraphT graph;
 
-	Dinic (GraphT graph) : graph (graph) {}
+	Dinic (GraphT graph) : graph (graph) {
+		dep.resize(graph.getN() + 2);
+		cur.resize(graph.getN() + 2);
+	}
 	EdgeT dinic (PointT b, PointT e);
 };
 
 template <typename PointT, typename EdgeT, typename GraphT>
 bool Dinic<PointT, EdgeT, GraphT>::bfs () {
-	memset (dep, -1, sizeof (dep));
-	memset (cur, 0, sizeof (cur));
+	fill (dep.begin(), dep.end(), -1);
+	fill (cur.begin(), cur.end(), 0);
 	
 	queue<PointT> q;
 	q.push(B);

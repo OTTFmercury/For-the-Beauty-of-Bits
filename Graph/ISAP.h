@@ -7,37 +7,42 @@ using std::memset;
 using std::min;
 using std::queue;
 
-template <typename PointT, typename EdgeT, typename GraphT>
+template <typename EdgeT, typename GraphT>
 class ISAP {
 	private:
 	
-	GraphT graph;
-	PointT B;
-	PointT E;
-	PointT dep[222];
-	PointT cc[222];
-	PointT cur[222];
+	int B;
+	int E;
+	vector<int> dep;
+	vector<int> cc;
+	vector<int> cur;
 	EdgeT res;
 
 	void bfs ();
-	EdgeT dfs (PointT now, EdgeT flow);
+	EdgeT dfs (int now, EdgeT flow);
 
 	public:
 
-	ISAP (GraphT graph) : graph (graph) {}
-	EdgeT isap (PointT b, PointT e);
+	GraphT graph;
+
+	ISAP (GraphT graph) : graph (graph) {
+		dep.resize(graph.getN() + 2);
+		cc.resize(graph.getN() + 2);
+		cur.resize(graph.getN() + 2);
+	}
+	EdgeT isap (int b, int e);
 };
 
-template <typename PointT, typename EdgeT, typename GraphT>
-void ISAP<PointT, EdgeT, GraphT>::bfs () {
-	memset (dep, -1, sizeof (dep));
+template <typename EdgeT, typename GraphT>
+void ISAP<EdgeT, GraphT>::bfs () {
+	fill (dep.begin(), dep.end(), -1);
 	cc[0] = 1;
 	dep[E] = 0;
 	queue<int> q;
 	q.push(E);
 	
 	while (!q.empty()) {
-		PointT u = q.front();
+		int u = q.front();
 		q.pop();
 		
 		for (auto r : graph[u]) {
@@ -53,8 +58,8 @@ void ISAP<PointT, EdgeT, GraphT>::bfs () {
 	}
 }
 
-template <typename PointT, typename EdgeT, typename GraphT>
-EdgeT ISAP<PointT, EdgeT, GraphT>::dfs (PointT u, EdgeT flow) {
+template <typename EdgeT, typename GraphT>
+EdgeT ISAP<EdgeT, GraphT>::dfs (int u, EdgeT flow) {
 	if (u == E) {
 		return flow;
 	}
@@ -63,12 +68,12 @@ EdgeT ISAP<PointT, EdgeT, GraphT>::dfs (PointT u, EdgeT flow) {
 	for (int i = cur[u]; i < int (graph[u].size()); i++) {
 		cur[u] = i;
 		auto &r = graph[u][i];
-		PointT v = r.first;
+		int v = r.first;
 		EdgeT w = r.second.first;
-		PointT another = r.second.second;
+		int another = r.second.second;
 		
 		if (w && dep[u] - 1 == dep[v]) {
-			int num = dfs (v, min (flow - used, w));
+			EdgeT num = dfs (v, min (flow - used, w));
 			if (num) {
 				r.second.first -= num;
 				graph[v][another].second.first += num;
@@ -83,15 +88,15 @@ EdgeT ISAP<PointT, EdgeT, GraphT>::dfs (PointT u, EdgeT flow) {
 	
 	cc[dep[u]]--;
 	if (cc[dep[u]] == 0) {
-		dep[B] = graph.getN() + 1;
+		dep[B] = graph.getN();
 	}
 	dep[u]++;
 	cc[dep[u]]++;
 	return used;
 }
 
-template <typename PointT, typename EdgeT, typename GraphT>
-EdgeT ISAP<PointT, EdgeT, GraphT>::isap (PointT b, PointT e) {
+template <typename EdgeT, typename GraphT>
+EdgeT ISAP<EdgeT, GraphT>::isap (int b, int e) {
 	
 	res = 0;
 	B = b;
@@ -99,7 +104,7 @@ EdgeT ISAP<PointT, EdgeT, GraphT>::isap (PointT b, PointT e) {
 	
 	bfs ();
 	while (dep[B] < graph.getN()) {
-		memset (cur, 0, sizeof (cur));
+		fill (cur.begin(), cur.end(), 0);
 		res += dfs (B, 2147483647);
 	}
 	

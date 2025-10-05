@@ -69,7 +69,8 @@ template <typename T, int N>
 int PairHeap<T, N>::pop(int x) {
 	x = find (x);
 	int t = merge (kid[x]);
-	root[x] = t;
+	root[x] = x;
+	bro[x] = kid[x] = 0;
 	root[t] = t;
 	return t;
 }

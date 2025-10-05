@@ -6,35 +6,35 @@
 using std::pair;
 using std::vector;
 
-template <typename PointT, typename EdgeT>
+template <typename EdgeT>
 class GraphWithVector {
 	private:
-	PointT n;
-	vector<vector<pair<PointT, EdgeT>>> graph;
+	int n;
+	vector<vector<pair<int, EdgeT>>> graph;
 
 	public:
 
-	GraphWithVector (PointT n = 1e5);
-	PointT getN () {return n;}
-	void add (PointT u, PointT v, EdgeT w = 1);
-	void addBoth (PointT u, PointT v, EdgeT w = 1);
-	auto& operator [] (const PointT i) {
+	GraphWithVector (int n = 1e5);
+	int getN () {return n;}
+	void add (int u, int v, EdgeT w = 1);
+	void addBoth (int u, int v, EdgeT w = 1);
+	auto& operator [] (const int i) {
 		return graph[i];
 	}
 };
 
-template <typename PointT, typename EdgeT>
-GraphWithVector<PointT, EdgeT>::GraphWithVector (PointT n) : n (n) {
+template <typename EdgeT>
+GraphWithVector<EdgeT>::GraphWithVector (int n) : n (n) {
 	graph.resize(n);
 }
 
-template <typename PointT, typename EdgeT>
-void GraphWithVector<PointT, EdgeT>::add (PointT u, PointT v, EdgeT w) {
+template <typename EdgeT>
+void GraphWithVector<EdgeT>::add (int u, int v, EdgeT w) {
 	graph[u].emplace_back(v, w);
 }
 
-template <typename PointT, typename EdgeT>
-void GraphWithVector<PointT, EdgeT>::addBoth (PointT u, PointT v, EdgeT w) {
+template <typename EdgeT>
+void GraphWithVector<EdgeT>::addBoth (int u, int v, EdgeT w) {
 	add (u, v, w);
 	add (v, u, w);
 }

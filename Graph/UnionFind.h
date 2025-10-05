@@ -5,24 +5,22 @@
 
 using namespace std;
 
-template <typename T = int>
 class UnionFind {
 	private:
-	T count;
-	vector<T> father;
-	vector<T> size {};
+	int count;
+	vector<int> father;
+	vector<int> size {};
 
 	public:
 
-	UnionFind (T n = 1e5);
-	int find (T num);
-	bool same (T one, T two) {return find (one) == find (two);}
-	void merge (T one, T two);
+	UnionFind (int n = 1e5);
+	int find (int num);
+	bool same (int one, int two) {return find (one) == find (two);}
+	void merge (int one, int two);
 	int howmany () {return count;}
 };
 
-template <typename T>
-UnionFind<T>::UnionFind (T n = 1e5) {
+UnionFind::UnionFind (int n) {
 	father.resize(n);
 	size.resize(n);
 	count = n;
@@ -30,8 +28,7 @@ UnionFind<T>::UnionFind (T n = 1e5) {
 	iota (father.begin(), father.end(), 0);
 }
 
-template <typename T>
-int UnionFind<T>::find (T num) {
+int UnionFind::find (int num) {
 	vector<int> sons;
 
 	while (num != father[num]) {
@@ -46,8 +43,7 @@ int UnionFind<T>::find (T num) {
 	return num;
 }
 
-template <typename T>
-void UnionFind<T>::merge (T one, T two) {
+void UnionFind::merge (int one, int two) {
 	one = find (one);
 	two = find (two);
 
