@@ -44,4 +44,4 @@ class Read {
 	}
 };
 
-Read in;
+Read fin;
