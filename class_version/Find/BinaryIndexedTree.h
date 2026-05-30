@@ -31,7 +31,7 @@ int BinaryIndexedTree<NumT, Fun, Identity>::lowbit (int id) {
 
 template<typename NumT, NumT (*Fun) (NumT one, NumT two), NumT Identity>
 void BinaryIndexedTree<NumT, Fun, Identity>::update (int id, NumT num) {
-	for (; id <= tree.size(); id += lowbit (id)) {
+	for (; id < tree.size(); id += lowbit (id)) {
 		tree[id] = Fun (tree[id], num);
 	}
 }

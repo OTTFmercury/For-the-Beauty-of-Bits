@@ -1,7 +1,5 @@
-
-
 template <typename T>
-T pow (T a, T n, T mod) {
+T quick_pow (T a, T n, T mod) {
 	T res = 1;
 	while (n) {
 		if (n & 1) {

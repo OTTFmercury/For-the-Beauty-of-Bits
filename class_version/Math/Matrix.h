@@ -134,7 +134,7 @@ class Matrix {
 				return res;
 			}
 
-			T num = pow<T> (extra[i][i], Mod - 2, Mod);
+			T num = quick_pow<T> (extra[i][i], Mod - 2, Mod);
 
 			for (int j = 1; j <= n; j++) {
 				if (i == j) {
