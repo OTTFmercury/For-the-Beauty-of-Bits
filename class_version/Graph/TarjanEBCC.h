@@ -67,7 +67,7 @@ void TarjanEBCC<PointT, EdgeT, GraphT>::dfs (PointT now, PointT dad) {
 }
 
 template <typename PointT, typename EdgeT, typename GraphT>
-vector<vector<PointT>> TarjanEBCC<PointT, EdgeT, GraphT>::tarjanPBCC () {
+vector<vector<PointT>> TarjanEBCC<PointT, EdgeT, GraphT>::tarjanEBCC () {
 	for (int i = 1; i <= n; i++) {
 		if (!dfn[i]) {
 			dfs (i, 0);

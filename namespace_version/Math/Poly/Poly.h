@@ -22,9 +22,9 @@ T my_pow (T a, T n) {
 namespace NTT {
 	/*
 	require:
-		constant : N, Mod
-		funcction : my_pow
-		head file : algorithm
+		constant: N  Mod
+		funcction: my_pow
+		head file: algorithm
 	*/
 	
 	const long long rt = 3;

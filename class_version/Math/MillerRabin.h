@@ -15,7 +15,7 @@ bool MillerRabin (long long n) {
 		u /= 2;
 	}
 	for (long long a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
-		long long v = pow (a, u, n);
+		long long v = quick_pow (a, u, n);
 		if (v == 0 || v == 1 || v == n - 1) {
 			continue;
 		}

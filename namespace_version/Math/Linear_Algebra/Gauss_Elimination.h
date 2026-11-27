@@ -11,9 +11,9 @@ const long double eps = 1e-6;
 namespace Gauss_Eli {
     /*
 	require:
-		constant : N
-		funcction : abs swap
-		head file : algorithm cmath
+		constant: N
+		funcction: abs swap
+		head file: algorithm cmath
 	*/
 
 	void solve (long double arr[N][N], long double res[N], int n) {

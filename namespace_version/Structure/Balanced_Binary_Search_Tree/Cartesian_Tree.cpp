@@ -4,7 +4,7 @@ const int N = 114514;
 namespace Cartesian_Tree {
     /*
 	require:
-		constant : N
+		constant: N
 	*/
 
 	int top;
